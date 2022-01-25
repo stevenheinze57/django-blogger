@@ -1,0 +1,4 @@
+Django==3.2
+django-bootstrap4==3.0.0
+configparser==5.0.2
+psycopg2==2.8.6

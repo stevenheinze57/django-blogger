@@ -1,0 +1,52 @@
+
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'home/home.css' %}">
+
+<div class="home-container container-fluid">
+  <div class="home-container-header">
+    <h2>Welcome to my personal blog!</h2>
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div class="row intro">
+    <div class="col-12">
+      <p>E in quis quamquam, doctrina ubi fugiat et malis pariatur te adipisicing, nam elit mandaremus iis te
+        legam aliqua sed nescius, deserunt a nescius, ne qui malis proident, malis deserunt appellat.
+        Probant elit eu mentitum transferrem de quamquam illum culpa e fugiat. Eiusmod quem eiusmod offendit
+        est ad sed labore incurreret.Nulla incididunt iudicem hic tamen sed te magna excepteur, arbitror
+        sint qui doctrina illustriora non aliqua ubi nostrud eu esse ne ex veniam irure et quibusdam hic
+        fugiat ullamco quo vidisse ex ita legam doctrina, laboris labore deserunt mandaremus. Si quorum
+        laborum possumus. De cernantur despicationes, summis laboris consectetur, vidisse et summis
+        senserit, ipsum incurreret expetendis. Eu cillum ingeniis coniunctione, dolore exquisitaque pariatur
+        legam iudicem eu multos an ita dolore aliquip ex cupidatat firmissimum de incurreret, eu noster fore
+        non pariatur, iis nisi mentitum a te dolor enim ex doctrina se probant dolore dolor nostrud minim.</p>
+    </div>
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div class="row gallery">
+    <div class="col-4">
+      <img class="img-fluid" src="{% static 'home/images/blog_home_pic1.jpeg' %}" alt="pic_1">
+    </div>
+    <div class="col-4">
+      <img class="img-fluid" src="{% static 'home/images/blog_home_pic2.jpeg' %}" alt="pic_2">
+    </div>
+    <div class="col-4">
+      <img class="img-fluid" src="{% static 'home/images/blog_home_pic3.jpeg' %}" alt="pic_3">
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

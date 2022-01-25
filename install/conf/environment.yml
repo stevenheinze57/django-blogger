@@ -1,0 +1,33 @@
+---
+  environment:
+
+    local:
+      variables:
+        - BLOGGER_CONFIG_FILE_PATH: /mnt/env-files/blogger_settings.ini
+      files:
+        - local/files/blogger_settings.ini
+        - local/files/blogger.fixture.json
+
+    feature:
+      variables:
+      files:
+
+    hotfix:
+      variables:
+      files:
+
+    development:
+      variables:
+      files:
+
+    release:
+      variables:
+      files:
+
+    test:
+      variables:
+      files:
+
+    production:
+      variables:
+      files:

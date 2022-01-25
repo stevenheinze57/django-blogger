@@ -1,0 +1,30 @@
+
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'blogger/blogger.css' %}">
+
+<div class="blogger-container container-fluid">
+  <div class="blogger-container-header">
+    <h2>Personal Blog</h2>
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  {% for blog in blog_posts %}
+    <div class="blogpost">
+      <h5><strong>{{ blog.title }}</strong></h5>
+      <p>{{ blog.content }}</p>
+      <label class="blogpost-datetime" for="blogpost">{{ blog.date_time }}</label>
+    </div>
+    <br>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

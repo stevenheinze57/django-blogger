@@ -1,0 +1,31 @@
+
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'contact/contact.css' %}">
+
+<div class="contact-container container-fluid">
+  <div class="contact-container-header">
+    <h2>Contact Me...</h2>
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <form action="/contact/index" method="post">
+    {% csrf_token %}
+    {{ form }}
+
+    <br>
+    <hr>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary">
+  </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+<div class="navbar-nav">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="nav-title">
+          <h2>My Personal Blog</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h3><a class="nav-item nav-link active" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a></h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h3><a class="nav-item nav-link" href="{% url 'blogger:index' %}">Blog</a></h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h3><a class="nav-item nav-link" href="{% url 'contact:index' %}">Contact</a></h3>
+      </div>
+    </div>
+  </div>
+</div>

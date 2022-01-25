@@ -1,0 +1,46 @@
+version: "3.3"
+services:
+  blogger_ui:
+    build:
+      context: ./
+      dockerfile: install/resources/docker/Dockerfile
+    container_name: blogger_ui
+    depends_on:
+      - "blogger_db"
+    networks:
+      blogger_network:
+        ipv4_address: 10.0.0.3
+    ports:
+      - "80:80"
+    volumes:
+      - type: bind
+        source: /home/bigdaddy/Development/automation-project/blogger/src/
+        target: /opt/blogger_ui/src/
+      - type: bind
+        source: /home/bigdaddy/Development/automation-project/blogger/install/conf/local/files/
+        target: /mnt/env-files/
+      - type: bind
+        source: /home/bigdaddy/Development/automation-project/blogger/install/resources/docker/scripts/
+        target: /opt/blogger_ui/scripts/
+      - type: bind
+        source: /home/bigdaddy/Development/automation-project/blogger/install/.docker_logs/blogger_ui.log
+        target: /opt/blogger_ui/logs/blogger_ui.log
+  blogger_db:
+    image: postgres:10.16
+    container_name: blogger_db
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: md5
+      POSTGRES_DB: blogger_db
+    networks:
+      blogger_network:
+        ipv4_address: 10.0.0.2
+    ports:
+      - "5432:5432"
+networks:
+  blogger_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/16

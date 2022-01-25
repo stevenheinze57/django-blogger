@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" style="position:relative; height:100%; width:100%;">
+  <head>
+    <meta charset="utf-8">
+    <title>Blogger Application</title>
+  </head>
+  <body style="height:100%; width:100%;">
+
+    {# Load the tag library #}
+    {% load bootstrap4 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'main/base.css' %}">
+
+    <div class="container-fluid" style="min-height:100%; height:100%; min-width: 100%; width:100%; padding: 0%;">
+      <div class="row no-gutters" style="min-height:100%; height: 100%; width:100%;">
+
+        <div class="col-2 side-navbar" style="min-height:100%;">
+          {% include 'main/partials/_nav.html' %}
+        </div>
+
+        <div class="col-10 main-content">
+          <div class="main-content-container">
+            {% block content %} {% endblock %}
+          </div>
+
+          {% include 'main/partials/_footer.html' %}
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>
