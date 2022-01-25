@@ -1,8 +1,6 @@
 
 # Django Blogger
 
-# About This Application
-
 This is a simple application to demonstrate a django blog website.
 
 # System Requirements
@@ -11,7 +9,7 @@ This is a simple application to demonstrate a django blog website.
 * Docker Compose
 * Python3
 
-# Running Locally 
+# Running Locally
 
 Build and run from root:
 ```
