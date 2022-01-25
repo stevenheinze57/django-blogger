@@ -1,13 +1,17 @@
 
-# ReadMe for blogger application
+# Django Blogger
 
 # About This Application
 
+This is a simple application to demonstrate a django blog website.
+
 # System Requirements
 
-# Installation
+* Docker
+* Docker Compose
+* Python3
 
-## Local
+# Running Locally 
 
 Build and run from root:
 ```
