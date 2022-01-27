@@ -1,26 +1,29 @@
+
 trigger:
   branches:
     include:
     - refs/heads/main
     - refs/heads/dev
     - refs/heads/release
+
 resources:
   repositories:
   - repository: self
     type: git
     ref: refs/heads/main
+
 jobs:
 - job: Job_1
-  displayName: Agent job 1
+  displayName: Main
   pool:
     vmImage: ubuntu-20.04
   steps:
   - checkout: self
     clean: true
   - task: Docker@2
-    displayName: buildAndPush
+    displayName: Build, Push
     inputs:
-      containerRegistry: 142c5ff1-62f0-4601-8b6a-c752bff7e502
+      containerRegistry: '<YOUR_AZ_CONTAINER_REGISTRY>' 
       repository: stevenheinze57/django-blogger
       buildContext: ''
       tags: >-
@@ -28,7 +31,7 @@ jobs:
 
         $(Build.SourceVersion)
   - task: Bash@3
-    displayName: Bash Script
+    displayName: Deploy
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
     inputs:
       targetType: inline
