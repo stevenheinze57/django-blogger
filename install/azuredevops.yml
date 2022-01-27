@@ -6,6 +6,10 @@ trigger:
     - refs/heads/dev
     - refs/heads/release
 
+# variables:
+#   isDev: $[eq(variables['Build.SourceBranch'], 'refs/heads/dev')]
+#   isRelease: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+
 resources:
   repositories:
   - repository: self
@@ -23,7 +27,7 @@ jobs:
   - task: Docker@2
     displayName: Build, Push
     inputs:
-      containerRegistry: '<YOUR_AZ_CONTAINER_REGISTRY>' 
+      containerRegistry: '<YOUR_AZ_CONTAINER_REGISTRY>'
       repository: stevenheinze57/django-blogger
       buildContext: ''
       tags: >-
@@ -32,7 +36,7 @@ jobs:
         $(Build.SourceVersion)
   - task: Bash@3
     displayName: Deploy
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/dev'), eq(variables['Build.SourceBranch'], 'refs/heads/release')))
     inputs:
       targetType: inline
       script: echo ">>>>>>>>>> INSERT DEPLOYMENT STEP HERE <<<<<<<<<<"
