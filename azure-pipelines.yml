@@ -4,12 +4,18 @@
 # https://aka.ms/yaml
 
 variables:
-  deployableBranches: | 
-    {
-      "dev": {"branch":"dev", "env":"devEnv"}, 
-      "main": {"branch":"main", "env":"mainEnv"}, 
-      "azure-pipelines": {"branch":"dev", "env":"devEnv"}
-    }
+  ${{ if eq( variables['Build.SourceBranchName'], 'dev*' ) }}: 
+    # Dev branch strategy
+    deployable: false
+    targetEnv: 'devEnv'
+  ${{ elseif eq( variables['Build.SourceBranchName'], 'main' ) }}: 
+    # Main branch strategy
+    deployable: true
+    targetEnv: 'mainEnv'
+  ${{ else }}:
+    # Default Values
+    deployable: false
+    targetEnv: null
 
 
 trigger:
@@ -48,5 +54,5 @@ jobs:
     condition: and(succeeded(), contains(variables.deployableBranches, variables['Build.SourceBranchName']) )
     inputs:
       targetType: inline
-      script: echo ">>>>>>>>>> ${{ convertToJson(variables.deployableBranches).[variables['Build.SourceBranchName']] }} <<<<<<<<<<"
+      script: echo ">>>>>>>>>> ${{ variables.deployableBranches }} <<<<<<<<<<"
 ...
