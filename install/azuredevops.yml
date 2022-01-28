@@ -6,9 +6,9 @@ trigger:
     - refs/heads/dev
     - refs/heads/release
 
-# variables:
-#   isDev: $[eq(variables['Build.SourceBranch'], 'refs/heads/dev')]
-#   isRelease: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+variables:
+  isDev: $[eq(variables['Build.SourceBranch'], 'refs/heads/dev')]
+  isRelease: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
 
 resources:
   repositories:
@@ -36,7 +36,7 @@ jobs:
         $(Build.SourceVersion)
   - task: Bash@3
     displayName: Deploy
-    condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/dev'), eq(variables['Build.SourceBranch'], 'refs/heads/release')))
+    condition: and(succeeded(), or(eq(variables.isDev, 'true'), eq(variables.isRelease, 'true') ) )
     inputs:
       targetType: inline
       script: echo ">>>>>>>>>> INSERT DEPLOYMENT STEP HERE <<<<<<<<<<"
