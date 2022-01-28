@@ -48,5 +48,5 @@ jobs:
     condition: and(succeeded(), contains(variables.deployableBranches, variables['Build.SourceBranchName']) )
     inputs:
       targetType: inline
-      script: echo ">>>>>>>>>> ${{ convertToJson(variables.deployableBranches).[${{ variables['Build.SourceBranchName'] }}] }} <<<<<<<<<<"
+      script: echo ">>>>>>>>>> ${{ convertToJson(variables.deployableBranches).[variables['Build.SourceBranchName']] }} <<<<<<<<<<"
 ...
