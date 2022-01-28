@@ -49,5 +49,5 @@ jobs:
     condition: and(succeeded(), contains(variables.deployableBranches, variables['Build.SourceBranchName']) )
     inputs:
       targetType: inline
-      script: echo ">>>>>>>>>> INSERT DEPLOYMENT STEP HERE <<<<<<<<<<"
+      script: echo ">>>>>>>>>> ${{ variables.deployableBranches }} <<<<<<<<<<"
 ...
