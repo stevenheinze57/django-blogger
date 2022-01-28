@@ -2,7 +2,7 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-
+ 
 trigger:
   branches:
     include:
@@ -11,15 +11,15 @@ trigger:
     - refs/heads/release
 
 variables:
-  ${{ if eq( variables['Build.SourceBranchName'], 'dev*' ) }}: 
+  ${{ if eq( variables['Build.SourceBranchName'], 'dev*' ) }}:
     # Dev branch strategy
     deployable: false
     targetEnv: 'devEnv'
-  ${{ elseif eq( variables['Build.SourceBranchName'], 'main' ) }}: 
+  ${{ elseif eq( variables['Build.SourceBranchName'], 'main' ) }}:
     # Main branch strategy
     deployable: true
     targetEnv: 'mainEnv'
-  ${{ elseif eq( variables['Build.SourceBranchName'], 'azure-pipelines' ) }}: 
+  ${{ elseif eq( variables['Build.SourceBranchName'], 'azure-pipelines' ) }}:
     # Main branch strategy
     deployable: true
     targetEnv: 'mainEnv'
