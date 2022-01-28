@@ -11,6 +11,7 @@ variables:
       "azure-pipelines": {"branch":"dev", "env":"devEnv"}
     }
 
+
 trigger:
   branches:
     include:
@@ -47,5 +48,5 @@ jobs:
     condition: and(succeeded(), contains(variables.deployableBranches, variables['Build.SourceBranchName']) )
     inputs:
       targetType: inline
-      script: echo ">>>>>>>>>> ${{ convertToJson(variables.deployableBranches) }} <<<<<<<<<<"
+      script: echo ">>>>>>>>>> ${{ convertToJson(variables.deployableBranches).${{ variables['Build.SourceBranchName'] }} }} <<<<<<<<<<"
 ...
