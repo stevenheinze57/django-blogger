@@ -39,7 +39,7 @@ jobs:
         $(Build.SourceVersion)
   - task: Bash@3
     displayName: Deploy
-    condition: and(succeeded(), contains(variables.deployableBranches, variables['Build.SourceBranch']) )
+    condition: and(succeeded(), contains(variables.deployableBranches, variables['Build.SourceBranchName']) )
     inputs:
       targetType: inline
       script: echo ">>>>>>>>>> INSERT DEPLOYMENT STEP HERE <<<<<<<<<<"
