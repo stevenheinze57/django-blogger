@@ -4,7 +4,14 @@
 # https://aka.ms/yaml
 
 variables:
-  deployableBranches: '["dev", "main", "azure-pipelines"]'
+  deployableBranches: | 
+    {
+      [
+        "dev": {"branch":"dev", "env":"devEnv"}, 
+        "main": {"branch":"main", "env":"mainEnv"}, 
+        "azure-pipelines": {"branch":"dev", "env":"devEnv"}
+      ]
+    }
 
 trigger:
   branches:
