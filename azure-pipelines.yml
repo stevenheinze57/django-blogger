@@ -6,11 +6,9 @@
 variables:
   deployableBranches: | 
     {
-      [
-        "dev": {"branch":"dev", "env":"devEnv"}, 
-        "main": {"branch":"main", "env":"mainEnv"}, 
-        "azure-pipelines": {"branch":"dev", "env":"devEnv"}
-      ]
+      "dev": {"branch":"dev", "env":"devEnv"}, 
+      "main": {"branch":"main", "env":"mainEnv"}, 
+      "azure-pipelines": {"branch":"dev", "env":"devEnv"}
     }
 
 trigger:
