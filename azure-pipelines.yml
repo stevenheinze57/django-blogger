@@ -12,6 +12,10 @@ variables:
     # Main branch strategy
     deployable: true
     targetEnv: 'mainEnv'
+  ${{ elseif eq( variables['Build.SourceBranchName'], 'azure-pipelines' ) }}: 
+    # Main branch strategy
+    deployable: true
+    targetEnv: 'mainEnv'
   ${{ else }}:
     # Default Values
     deployable: false
