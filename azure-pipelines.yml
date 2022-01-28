@@ -3,6 +3,13 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+trigger:
+  branches:
+    include:
+    - refs/heads/main
+    - refs/heads/dev
+    - refs/heads/release
+
 variables:
   ${{ if eq( variables['Build.SourceBranchName'], 'dev*' ) }}: 
     # Dev branch strategy
@@ -20,14 +27,6 @@ variables:
     # Default Values
     deployable: false
     targetEnv: null
-
-
-trigger:
-  branches:
-    include:
-    - refs/heads/main
-    - refs/heads/dev
-    - refs/heads/release
 
 resources:
   repositories:
