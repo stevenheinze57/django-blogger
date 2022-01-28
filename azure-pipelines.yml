@@ -51,8 +51,8 @@ jobs:
         $(Build.SourceVersion)
   - task: Bash@3
     displayName: Deploy
-    condition: and(succeeded(), contains(variables.deployableBranches, variables['Build.SourceBranchName']) )
+    condition: and(succeeded(), eq(variables.deployable, true) )
     inputs:
       targetType: inline
-      script: echo ">>>>>>>>>> ${{ variables.deployableBranches }} <<<<<<<<<<"
+      script: echo ">>>>>>>>>> ${{ variables.targetEnv }} <<<<<<<<<<"
 ...
