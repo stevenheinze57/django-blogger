@@ -31,8 +31,8 @@ variables:
 resources:
   repositories:
   - repository: self
-    type: git
-    ref: refs/heads/main
+    # type: git
+    # ref: refs/heads/main
 
 jobs:
 - job: Job_1
