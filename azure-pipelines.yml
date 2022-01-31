@@ -7,7 +7,7 @@ trigger:
   branches:
     include:
     - refs/heads/main
-    - refs/heads/dev
+    - refs/heads/dev*
     - refs/heads/release
 
 variables:
