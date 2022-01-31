@@ -34,28 +34,66 @@ resources:
     # type: git
     # ref: refs/heads/main
 
-jobs:
-- job: Job_1
-  displayName: Main
-  pool:
-    vmImage: ubuntu-20.04
-  steps:
-  - checkout: self
-    clean: true
-  - task: Docker@2
-    displayName: Build, Push
-    inputs:
-      containerRegistry: 'dr1'
-      repository: stevenheinze57/django-blogger
-      buildContext: ''
-      tags: >-
-        $(Build.SourceBranchName)
+stages:
+  - stage: Build
+    displayName: Build
+    jobs:
+    - job: Job_1
+      displayName: Main
+      pool:
+        vmImage: ubuntu-20.04
+      steps:
+      - checkout: self
+        clean: true
+      - task: Docker@2
+        displayName: Build, Push
+        inputs:
+          containerRegistry: 'dr1'
+          repository: stevenheinze57/django-blogger
+          buildContext: ''
+          tags: >-
+            $(Build.SourceBranchName)
 
-        $(Build.SourceVersion)
-  - task: Bash@3
+            $(Build.SourceVersion)
+  - stage: Deploy
     displayName: Deploy
-    condition: and(succeeded(), eq(variables.deployable, true) )
-    inputs:
-      targetType: inline
-      script: echo ">>>>>>>>>> ${{ variables.targetEnv }} <<<<<<<<<<"
+    jobs:
+    - job: Job_2
+      displayName: deploy
+      pool:
+        vmImage: ubuntu-20.04
+      steps:
+      - checkout: self
+        clean: true
+      - task: Bash@3
+        displayName: Deploy
+        condition: and(succeeded(), eq(variables.deployable, true) )
+        inputs:
+          targetType: inline
+          script: echo ">>>>>>>>>> ${{ variables.targetEnv }} <<<<<<<<<<"
+
+# jobs:
+# - job: Job_1
+#   displayName: Main
+#   pool:
+#     vmImage: ubuntu-20.04
+#   steps:
+#   - checkout: self
+#     clean: true
+#   - task: Docker@2
+#     displayName: Build, Push
+#     inputs:
+#       containerRegistry: 'dr1'
+#       repository: stevenheinze57/django-blogger
+#       buildContext: ''
+#       tags: >-
+#         $(Build.SourceBranchName)
+
+#         $(Build.SourceVersion)
+#   - task: Bash@3
+#     displayName: Deploy
+#     condition: and(succeeded(), eq(variables.deployable, true) )
+#     inputs:
+#       targetType: inline
+#       script: echo ">>>>>>>>>> ${{ variables.targetEnv }} <<<<<<<<<<"
 ...
